@@ -7,6 +7,7 @@ import main.Main;
 import images.ImageLoader;
 import interfaces.ICollision;
 
+//This is a test
 public class BombItem extends PickUpItem {
 	
 	public static final int AMMO_AMOUNT = 5;
