@@ -13,6 +13,8 @@ import main.Util;
 
 public class TransparentRect extends StaticObject implements ICollision{
 	
+	private static final long serialVersionUID = -6904196087472080776L;
+
 	public final static int HEIGHT = 10;
 	
 	private static BufferedImage trapdoor;

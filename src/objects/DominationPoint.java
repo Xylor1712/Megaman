@@ -10,6 +10,8 @@ import main.Main;
 
 public class DominationPoint extends CharacterDetection {
 	
+	private static final long serialVersionUID = -1478125883822386685L;
+	
 	private static final Color STANDARD_COLOR = Color.YELLOW;
 	private Color color = STANDARD_COLOR;
 

@@ -10,6 +10,9 @@ import main.GameRules;
 import main.Main;
 
 public class MinionSpawner extends Spawner {
+
+	private static final long serialVersionUID = 1074692385237097479L;
+
 	public static final int WIDTH = 60;
 	public static final int HEIGHT = 75;
 	

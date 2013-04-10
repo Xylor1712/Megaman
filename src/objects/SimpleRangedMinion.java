@@ -11,6 +11,10 @@ import main.Main;
 import main.Util;
 
 public class SimpleRangedMinion extends SimpleMinion {
+
+	private static final long serialVersionUID = 6010283294884292736L;
+	
+	
 	private static BufferedImage[] blue = new BufferedImage[12];
 	private static BufferedImage[] red = new BufferedImage[12];
 	private static BufferedImage img;

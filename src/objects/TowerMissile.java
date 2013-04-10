@@ -14,6 +14,8 @@ import main.Util;
 
 public class TowerMissile extends Missile {
 	
+	private static final long serialVersionUID = -5860145900544560026L;
+	
 	private static final int MAX_LIFETIME = 3;
 	private int lifetime = 0;
 	

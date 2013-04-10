@@ -14,6 +14,8 @@ import main.Util;
 
 public class MegamanMissile extends Missile {
 	
+	private static final long serialVersionUID = -757512546054369385L;
+
 	public static final int BASE_DAMAGE = 10;
 	
 	public static int WIDTH = 42;

@@ -13,7 +13,8 @@ import main.Main;
 
 public class WizzyMissile extends Missile {
 	
-
+	private static final long serialVersionUID = -3550751911401879449L;
+	
 	private static final double MAX_LIFETIME = 0.66;
 	private int lifetime = 0;
 	

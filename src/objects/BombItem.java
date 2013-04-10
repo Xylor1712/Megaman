@@ -9,6 +9,8 @@ import interfaces.ICollision;
 
 public class BombItem extends PickUpItem {
 	
+	private static final long serialVersionUID = -2971580873342772041L;
+	
 	public static final int AMMO_AMOUNT = 5;
 	public static final String fileName = "bombs";
 	

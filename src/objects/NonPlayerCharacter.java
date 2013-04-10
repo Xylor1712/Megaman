@@ -6,6 +6,8 @@ import main.Main;
 
 public abstract class NonPlayerCharacter extends Character {
 	
+	private static final long serialVersionUID = 4250078535970383203L;
+
 	protected NonPlayerCharacter(){
 		super();
 		initImg();

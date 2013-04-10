@@ -11,6 +11,8 @@ import main.Main;
 
 public abstract class PickUpItem extends StaticObject implements ICollision, NeedsUpdate, NeedsSync, Resetable  {
 
+	private static final long serialVersionUID = 1137608780139672894L;
+
 	protected boolean enabled = true;
 	
 	public static final int WIDTH = 40;

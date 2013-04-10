@@ -15,6 +15,8 @@ import main.Util;
 
 public class SimpleMeleeMinion extends SimpleMinion implements NeedsUpdate{
 
+	private static final long serialVersionUID = -6040883154843033367L;
+	
 	private static BufferedImage[] blue = new BufferedImage[12];
 	private static BufferedImage[] red = new BufferedImage[12];
 	private static BufferedImage img;

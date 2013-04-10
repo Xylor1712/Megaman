@@ -10,6 +10,8 @@ import main.Main;
 
 public class RapidFireItem extends PickUpItem {
 	
+	private static final long serialVersionUID = 4050382842649916482L;
+
 	public static final String fileName = "rapidfire";
 	
 	public static BufferedImage imgFull;

@@ -15,6 +15,8 @@ import main.Util;
 
 public class Zero extends PlayerCharacter implements NeedsUpdate{
 	
+
+	private static final long serialVersionUID = -7838884012244264708L;
 	
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 50;

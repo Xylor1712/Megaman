@@ -14,6 +14,9 @@ import main.Util;
 
 public class BombMissile extends Missile{
 	
+	private static final long serialVersionUID = 6515657362076348665L;
+	
+	
 	public static int WIDTH = 16;
 	public static int HEIGHT = 16;
 	

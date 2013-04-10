@@ -10,6 +10,9 @@ import main.Util;
 
 public class Sakuyamon extends PlayerCharacter {
 	
+
+	private static final long serialVersionUID = 3751142030390616692L;
+	
 	public static final int WIDTH = 35;
 	public static final int HEIGHT = 60;
 	

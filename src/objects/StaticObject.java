@@ -8,6 +8,9 @@ import interfaces.Resetable;
 
 public abstract class StaticObject extends GameObject implements Resetable{
 	
+
+	private static final long serialVersionUID = -1334734846695776528L;
+	
 	protected int x = 200;
 	protected int y = 100;
 	protected int width = 50;

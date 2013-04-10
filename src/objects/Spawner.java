@@ -9,6 +9,9 @@ import interfaces.NeedsUpdate;
 
 public abstract class Spawner extends StaticObject implements NeedsUpdate, NeedsSync {
 	
+
+	private static final long serialVersionUID = 979913144438205695L;
+	
 	
 	protected boolean enabled = true;
 	protected int frequenzy = 5;

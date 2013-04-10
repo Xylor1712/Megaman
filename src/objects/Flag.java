@@ -10,6 +10,8 @@ import main.Main;
 
 public class Flag extends PickUpItem implements NeedsUpdate{
 	
+	private static final long serialVersionUID = -8140780921892687708L;
+	
 	public final int team;
 	public final int START_X;
 	public final int START_Y;

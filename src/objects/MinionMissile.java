@@ -12,6 +12,8 @@ import main.Main;
 
 public class MinionMissile extends Missile {
 	
+	private static final long serialVersionUID = -1601301641847889045L;
+	
 	public static int WIDTH = 16;
 	public static int HEIGHT = 16;
 	

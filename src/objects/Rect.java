@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 
 public class Rect extends StaticObject implements ICollision{
 	
+	private static final long serialVersionUID = 4283143532398811567L;
+	
 	private static BufferedImage brick;
 	private static TexturePaint brickPaint;
 	private BufferedImage img;

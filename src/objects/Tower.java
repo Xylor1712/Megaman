@@ -20,6 +20,8 @@ import main.Main;
 
 public class Tower extends StaticObject implements Damageable, NeedsUpdate, ICollision, NeedsSync{
 	
+	private static final long serialVersionUID = 7541455195165541808L;
+	
 	public static final int WIDTH = 80;
 	public static final int HEIGHT = 100;
 	
@@ -72,6 +74,8 @@ public class Tower extends StaticObject implements Damageable, NeedsUpdate, ICol
 				attackRange * 2,
 				CharacterDetection.PULSE_MODE,
 				CharacterDetection.OVAL_SHAPE){
+
+					private static final long serialVersionUID = 514973164112497793L;
 
 					@Override
 					public void event(ArrayList<Character> player) {

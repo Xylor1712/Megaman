@@ -18,6 +18,7 @@ import interfaces.*;
 
 public abstract class PlayerCharacter extends Character{
 	
+	private static final long serialVersionUID = 7480423037798802831L;
 	
 	protected int wins = 0;
 	protected int kills = 0;

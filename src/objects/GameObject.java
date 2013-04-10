@@ -3,13 +3,16 @@ package objects;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import main.Main;
 import images.ImageLoader;
 import interfaces.Paintable;
 
-public abstract class GameObject implements Paintable{
+public abstract class GameObject implements Paintable, Serializable{
 	
+	private static final long serialVersionUID = 6043560631808928777L;
+
 	public boolean deleteThisToken = false;
 	
 	public int id;

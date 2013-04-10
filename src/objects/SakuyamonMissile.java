@@ -13,6 +13,8 @@ import main.Main;
 
 public class SakuyamonMissile extends Missile {
 
+	private static final long serialVersionUID = -7253928975340239762L;
+	
 	private static final double MAX_LIFETIME = 1.33;
 	public static final int BASE_DAMAGE = 6;
 

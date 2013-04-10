@@ -5,6 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
 import javax.swing.FocusManager;
@@ -58,6 +64,12 @@ public class Listener implements KeyListener, MouseListener{
 		}
 		else{
 			switch(e.getKeyCode()){
+			case KeyEvent.VK_F1:
+				testSaveInFile();
+				break;
+			case KeyEvent.VK_F2:
+				testLoad();
+				break;
 			case KeyEvent.VK_O:
 				SimpleRangedMinion m = new SimpleRangedMinion(0,0,new Point(Main.mapSize.width/2, Main.mapSize.height/2));
 				Main.compList.add(m);
@@ -297,6 +309,42 @@ public class Listener implements KeyListener, MouseListener{
 			Point clicked = Util.frameToMapPoint(e.getPoint());
 
 			Main.deleteItemAt(clicked);
+		}
+	}
+	
+	public void testSaveInFile(){
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			File file = new File("standardSave.save");
+			if(!file.exists()) file.createNewFile();
+			fos = new FileOutputStream("standardSave.save");
+			out = new ObjectOutputStream(fos);
+			for(PlayerCharacter p : Main.getPlayerList())
+				out.writeObject(p);
+			out.close();
+			System.out.println("Object Persisted");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void testLoad(){
+		FileInputStream fis = null;
+		ObjectInputStream in = null;
+		try {
+			fis = new FileInputStream("standardSave.save");
+			in = new ObjectInputStream(fis);
+			PlayerCharacter pc = (PlayerCharacter) in.readObject();
+			Main.deleteObj(Main.player1.id);
+			Main.deleteUnusedObjects();
+			Main.addCompList(pc);
+			Main.player1 = pc;
+			in.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
 		}
 	}
 	

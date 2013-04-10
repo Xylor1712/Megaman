@@ -10,6 +10,9 @@ import main.Main;
 
 public class TowerRepairItem extends PickUpItem {
 
+
+	private static final long serialVersionUID = 6258498744329683257L;
+	
 	public static final int HEAL_AMOUNT = 150;
 	public static BufferedImage imgFull;
 	public static BufferedImage imgEmpty;

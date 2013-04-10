@@ -9,6 +9,8 @@ import interfaces.ICollision;
 
 public class HeartItem extends PickUpItem{
 	
+	private static final long serialVersionUID = 2805788458916654680L;
+
 	public static final int HEAL_AMOUNT = 25;
 	
 	public static final String fileName = "heart";

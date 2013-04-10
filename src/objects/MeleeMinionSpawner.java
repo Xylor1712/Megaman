@@ -10,6 +10,8 @@ import main.GameRules;
 import main.Main;
 
 public class MeleeMinionSpawner extends Spawner {
+
+	private static final long serialVersionUID = -6277591565527380536L;
 	
 	public static final int WIDTH = 60;
 	public static final int HEIGHT = 75;

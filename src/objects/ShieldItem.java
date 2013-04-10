@@ -10,6 +10,7 @@ import main.Main;
 
 public class ShieldItem extends PickUpItem {
 	
+	private static final long serialVersionUID = 2580759588260097616L;
 
 	public static final String fileName = "shield";
 	

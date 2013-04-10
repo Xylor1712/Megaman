@@ -11,6 +11,8 @@ import java.awt.*;
 public class Megaman extends PlayerCharacter {
 
 
+	private static final long serialVersionUID = -640530945564128332L;
+	
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 55;
 	

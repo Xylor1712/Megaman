@@ -15,6 +15,8 @@ import main.Main;
 
 public abstract class SimpleMinion extends NonPlayerCharacter implements NeedsUpdate {
 	
+	private static final long serialVersionUID = -6579216687791840344L;
+	
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 50;
 	public static final int DETECTION_RANGE = 200;

@@ -11,6 +11,8 @@ import interfaces.NeedsUpdate;
 
 public abstract class CharacterDetection extends StaticObject implements NeedsUpdate {
 	
+	private static final long serialVersionUID = 6435193227831284956L;
+	
 	public static final int PULSE_MODE = 0;
 	public static final int ASP_MODE = 1;
 	public static final int ON_ENTER_MODE = 2;

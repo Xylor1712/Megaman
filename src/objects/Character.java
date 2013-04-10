@@ -9,6 +9,9 @@ import main.Main;
 
 public abstract class Character extends GameObject implements ICollision, Moveable, Damageable, Resetable, NeedsSync {
 	
+	private static final long serialVersionUID = -4490682587406618015L;
+
+
 	public static final int[] LEVEL_BREAKPOINTS = {200, 500, 1000, 1750, 2750, 4000, 5500, 7500, 10000};
 	
 	

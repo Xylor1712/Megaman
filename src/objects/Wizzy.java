@@ -10,6 +10,8 @@ import main.Util;
 
 public class Wizzy extends PlayerCharacter {
 	
+	private static final long serialVersionUID = 1044067900669906115L;
+	
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 75;
 	

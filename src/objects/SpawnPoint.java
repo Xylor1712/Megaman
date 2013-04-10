@@ -6,6 +6,8 @@ import main.GameRules;
 
 public class SpawnPoint extends StaticObject {
 	
+	private static final long serialVersionUID = -4548554036959274129L;
+	
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 50;
 	

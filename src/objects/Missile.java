@@ -11,6 +11,9 @@ import interfaces.Moveable;
 
 public abstract class Missile extends GameObject implements ICollision, Moveable, Damageable{
 
+
+	private static final long serialVersionUID = -3645901409913115352L;
+	
 	protected int x;
 	protected int y;
 	
