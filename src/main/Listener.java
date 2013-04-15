@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,13 +10,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.swing.FocusManager;
 import javax.swing.KeyStroke;
 
+import objects.GameObject;
 import objects.Missile;
 import objects.PlayerCharacter;
 import objects.Rect;
@@ -320,8 +324,15 @@ public class Listener implements KeyListener, MouseListener{
 			if(!file.exists()) file.createNewFile();
 			fos = new FileOutputStream("standardSave.save");
 			out = new ObjectOutputStream(fos);
-			for(PlayerCharacter p : Main.getPlayerList())
-				out.writeObject(p);
+			out.writeObject(Main.mapSize);
+			for(GameObject go : Main.getCompList()){
+				try{
+				out.writeObject(go);
+				}
+				catch(NotSerializableException e){
+					System.out.println(go);
+				}
+		}
 			out.close();
 			System.out.println("Object Persisted");
 		} catch (IOException ex) {
@@ -335,11 +346,11 @@ public class Listener implements KeyListener, MouseListener{
 		try {
 			fis = new FileInputStream("standardSave.save");
 			in = new ObjectInputStream(fis);
-			PlayerCharacter pc = (PlayerCharacter) in.readObject();
-			Main.deleteObj(Main.player1.id);
-			Main.deleteUnusedObjects();
-			Main.addCompList(pc);
-			Main.player1 = pc;
+			Main.compList = new ArrayList<>();
+			Main.mapSize = (Dimension) in.readObject();
+			while(in.readObject() != null){
+				Main.addCompList((GameObject)in.readObject());
+			}
 			in.close();
 		} catch (IOException ex) {
 			ex.printStackTrace();

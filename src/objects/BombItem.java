@@ -7,7 +7,6 @@ import main.Main;
 import images.ImageLoader;
 import interfaces.ICollision;
 
-//This is a test
 public class BombItem extends PickUpItem {
 	
 	private static final long serialVersionUID = -2971580873342772041L;

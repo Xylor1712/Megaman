@@ -458,6 +458,8 @@ public abstract class PlayerCharacter extends Character{
 	public void collide(int x, int y, ICollision obj){
 		Rectangle bounds = obj.getBounds();
 		
+		System.out.println("test");
+		
 		//von Unten
 		if(obj.inObject((int)(xPos+width/4),(int)yPos) || obj.inObject((int)xPos+3*width/4,(int) yPos) 
 						&& !(obj.inObject((int)(xPos+width/4),(int)yPos+height/4) || obj.inObject((int)xPos+3*width/4,(int) yPos+height/4))){

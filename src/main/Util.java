@@ -34,7 +34,7 @@ public class Util {
 		
 		int width = org.getWidth();
 		int height = org.getHeight();
-		BufferedImage dest = new BufferedImage(width, height, org.getType());
+		BufferedImage dest = getTransparentImage(width, height);
 		
 		if(axis == X_AXIS){
 			for(int i = 0; i < width; i++)
@@ -51,7 +51,7 @@ public class Util {
 		}
 		//dest.setData(r1);
 		
-		return imageToBufferedImage(makeColorTransparent(dest, new Color(0)));
+		return imageToBufferedImage(dest);
 	}
 	
 	

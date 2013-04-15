@@ -297,12 +297,14 @@ public class GameRules {
 	
 	public static void statReset(PlayerCharacter pc){
 
+		if(Main.gameRuns) return;
+		
 		if(killReset()) pc.setKills(0);
 		if(deathReset()) pc.setDeaths(0);
 		if(flagReset()) pc.setFlagsCaptured(0);
 		if(towerReset()) pc.setTowerKills(0);
 		if(minionReset()) pc.setMinionKills(0);
-		if(!Main.gameRuns && playerCanLevel()){
+		if(playerCanLevel()){
 			pc.setLevel(1);
 			pc.setExp(0);
 		}
