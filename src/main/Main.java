@@ -19,7 +19,7 @@ import java.util.Iterator;
 
 public class Main{
 	
-	public static boolean debug = false;
+	public static boolean debug = true;
 	public static final int SERVER_MODE = 1;
 	public static final int CLIENT_MODE = 2;
 	public static final int NORMAL_MODE = 0;

@@ -155,13 +155,8 @@ public abstract class Server
     */  
     public ServerConnection SerververbindungVonIPUndPort(String pClientIP, int pClientPort)
     {
-        ServerConnection lSerververbindung;
         
-        Iterator<ServerConnection> it = verbindungen.iterator();
-        
-        while (it.hasNext())
-        {
-            lSerververbindung = (ServerConnection) it.next();
+        for(ServerConnection lSerververbindung : getVerbindungen()){
             if (lSerververbindung.getRemoteIP().equals(pClientIP) && lSerververbindung.getRemotePort() == pClientPort)
                 return lSerververbindung;
         }   
@@ -190,11 +185,7 @@ public abstract class Server
     */
     public void sendToAll(String pMessage)
     {
-        ServerConnection lSerververbindung;
-        Iterator<ServerConnection> it = verbindungen.iterator();
-        while (it.hasNext())
-        {	
-            lSerververbindung = (ServerConnection) it.next();
+        for(ServerConnection lSerververbindung : getVerbindungen()){
             lSerververbindung.send(pMessage);
         }   
     }
@@ -208,7 +199,9 @@ public abstract class Server
     {
         ServerConnection lSerververbindung = this.SerververbindungVonIPUndPort(pClientIP, pClientPort);
         if (lSerververbindung != null)
-        {   this.processClosedConnection(pClientIP, pClientPort);
+        {   
+        	System.out.println("Schließe Verbindung zu : " + lSerververbindung);
+        	this.processClosedConnection(pClientIP, pClientPort);
             lSerververbindung.close();
             this.loescheVerbindung(lSerververbindung);
 
@@ -225,23 +218,22 @@ public abstract class Server
     */
     private void loescheVerbindung(ServerConnection pVerbindung)
     {
-        Iterator<ServerConnection> it = verbindungen.iterator();
-        while (it.hasNext())
-        {
-            ServerConnection lClient = (ServerConnection) it.next();
-            if (lClient == pVerbindung){
-            	boolean done = false;
-            	while(!done){
-                    try{
-                    	verbindungen.remove(lClient);
-                    	done = true;
-                    }
-                    catch(Exception e){
-                    }
-            	}
-            	
-            }
-        }   
+    	System.out.println("Lösche Verbingung: " + pVerbindung);
+	    try{
+	        Iterator<ServerConnection> it = verbindungen.iterator();
+	        while (it.hasNext())
+	        {
+	            ServerConnection lClient = (ServerConnection) it.next();
+	            if (lClient == pVerbindung){
+                   	verbindungen.remove(lClient);
+	            }
+	        }
+	    }
+	    catch(Exception e){
+	    	 e.printStackTrace();
+	    	 System.out.println("Serververbindungen:");
+	    	 for(ServerConnection sc : getVerbindungen()) System.out.println(sc);
+	    }
     }
     
     /**
@@ -286,6 +278,10 @@ public abstract class Server
             System.err.println("Fehler beim Schlie\u00DFen des Servers: " + pFehler);
         }
        
+    }
+    
+    public ArrayList<ServerConnection> getVerbindungen(){
+    	return new ArrayList<ServerConnection>(verbindungen);
     }
 
     
