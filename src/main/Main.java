@@ -41,7 +41,7 @@ public class Main{
 	public static Clock serverSyncClock;
 	public static int syncsPerSec = 30;
 	public static IOMap iomap = new IOMap();
-	public static ArrayList<GameObject> compList = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> compList = new ArrayList<GameObject>();
 	public static PlayerCharacter player2;
 	public static PlayerCharacter player1;
 	
@@ -128,7 +128,7 @@ public class Main{
 		
 		if(debug) System.out.println("Init Rects");
 		initStatics(compList);
-		
+		refreshLists();
 		if(debug) System.out.println("Start Clock.");
 		renderClock.start();
 		clock.start();
@@ -142,7 +142,7 @@ public class Main{
 				long t1 = 0;
 				long t2 = 0;
 				if(displayFps) t1 = System.nanoTime();
-				
+				refreshLists();
 				deleteUnusedObjects();
 				if(movementAllowed && gameRuns){
 					Main.move();
@@ -350,26 +350,55 @@ public class Main{
 		for(StaticObject s : getStaticList()){
 			map.add("/newObj " + s.id + " " + s.transformToString());
 		}
+		refreshLists = true;
 	}
 	
+	private static boolean refreshLists = true;
 	
-	private static ArrayList<ICollision> collisionList;
-	private static ArrayList<Moveable> moveableList;
-	private static ArrayList<PlayerCharacter> playerList;
-	private static ArrayList<Character> characterList;
-	private static ArrayList<Rect> rectList;
-	private static ArrayList<Missile> missileList;
-	private static ArrayList<StaticObject> staticList;
-	private static ArrayList<NeedsUpdate> updateList;
-	private static ArrayList<SpawnPoint> spawnPointList;
-	private static ArrayList<PickUpItem> pickUpItemList;
-	private static ArrayList<Flag> flagList;
-	private static ArrayList<Spawner> spawnerList;
-	private static ArrayList<NeedsSync> syncList;
-	private static ArrayList<NonPlayerCharacter> npcList;
-	private static ArrayList<Tower> towerList;
-	private static ArrayList<Resetable> resetableList;
+	public static void refreshLists(){
+		if(refreshLists){
+			setCollisionList();
+			setMoveableList();
+			setPlayerList();
+			setCharacterList();
+			setRectList();
+			setMissileList();
+			setStaticList();
+			setUpdateList();
+			setSpawnPointList();
+			setPickUpItemList();
+			setFlagList();
+			setSpawnerList();
+			setSyncList();
+			setNPCList();
+			setTowerList();
+			setResetableList();
+			refreshLists = false;
+		}
+	}
 	
+	private static ArrayList<ICollision> collisionList = new ArrayList<>();
+	private static ArrayList<Moveable> moveableList = new ArrayList<>();
+	private static ArrayList<PlayerCharacter> playerList = new ArrayList<>();
+	private static ArrayList<Character> characterList = new ArrayList<>();
+	private static ArrayList<Rect> rectList = new ArrayList<>();
+	private static ArrayList<Missile> missileList = new ArrayList<>();
+	private static ArrayList<StaticObject> staticList = new ArrayList<>();
+	private static ArrayList<NeedsUpdate> updateList = new ArrayList<>();
+	private static ArrayList<SpawnPoint> spawnPointList = new ArrayList<>();
+	private static ArrayList<PickUpItem> pickUpItemList = new ArrayList<>();
+	private static ArrayList<Flag> flagList = new ArrayList<>();
+	private static ArrayList<Spawner> spawnerList = new ArrayList<>();
+	private static ArrayList<NeedsSync> syncList = new ArrayList<>();
+	private static ArrayList<NonPlayerCharacter> npcList = new ArrayList<>();
+	private static ArrayList<Tower> towerList = new ArrayList<>();
+	private static ArrayList<Resetable> resetableList = new ArrayList<>();
+	
+
+	
+	public static ArrayList<GameObject> getCompList(){
+		return new ArrayList<GameObject>(compList);
+	}
 	
 	public static ArrayList<ICollision> getCollisionList() {
 		return collisionList;
@@ -434,183 +463,169 @@ public class Main{
 	public static ArrayList<Resetable> getResetableList() {
 		return resetableList;
 	}
-	
-	public static void refreshLists(){
-		setCollisionList();
-		setMoveableList();
-		setPlayerList();
-		setCharacterList();
-		setRectList();
-		setMissileList();
-		setStaticList();
-		setUpdateList();
-		setSpawnPointList();
-		setPickUpItemList();
-		setFlagList();
-		setSpawnerList();
-		setSyncList();
-		setNPCList();
-		setTowerList();
-		setResetableList();
+	/*
+	public static <E> ArrayList<E> refreshList(ArrayList<E> list){
+		ArrayList<E> res = new ArrayList<E>();
+		for(GameObject o : getCompList()){
+			if(o instanceof E) res.add((E)o);
+		}
+		return res;
 	}
+*/
 	
-	public static ArrayList<ICollision> setCollisionList(){
+	public static void setCollisionList(){
 		ArrayList<ICollision> res = new ArrayList<ICollision>();
 		for(GameObject o : getCompList()){
 			if(o instanceof ICollision){
 				res.add((ICollision)o);
 			}
 		}
-		return res;
+		collisionList = res;
 	}
 	
-	public static ArrayList<Moveable> setMoveableList(){
+	public static void setMoveableList(){
 		ArrayList<Moveable> res = new ArrayList<Moveable>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Moveable){
 				res.add((Moveable)o);
 			}
 		}
-		return res;
+		moveableList = res;
 
-	}
-	
-	public static ArrayList<GameObject> getCompList(){
-		return new ArrayList<GameObject>(compList);
 	}
 
 	
-	public static ArrayList<PlayerCharacter> setPlayerList(){
+	public static void setPlayerList(){
 		ArrayList<PlayerCharacter> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof PlayerCharacter)
 				res.add((PlayerCharacter)o);
 		}
-		return res;
+		playerList = res;
 	}
 	
-	public static ArrayList<Character> setCharacterList(){
+	public static void setCharacterList(){
 		ArrayList<Character> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Character)
 				res.add((Character)o);
 		}
-		return res;
+		characterList = res;
 	}
 	
-	public static ArrayList<Rect> setRectList(){
+	public static void setRectList(){
 		ArrayList<Rect> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Rect){
 				res.add((Rect)o);
 			}
 		}
-		return res;
+		rectList = res;
 	}
 	
-	public static ArrayList<StaticObject> setStaticList(){
+	public static void setStaticList(){
 		ArrayList<StaticObject> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof StaticObject){
 				res.add((StaticObject)o);
 			}
 		}
-		return res;
+		staticList = res;
 	}
 	
-	public static ArrayList<Missile> setMissileList(){
+	public static void setMissileList(){
 		ArrayList<Missile> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Missile){
 				res.add((Missile)o);
 			}
 		}
-		return res;
+		missileList = res;
 	}
 	
-	public static ArrayList<NeedsUpdate> setUpdateList(){
+	public static void setUpdateList(){
 		ArrayList<NeedsUpdate> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof NeedsUpdate){
 				res.add((NeedsUpdate)o);
 			}
 		}
-		return res;
+		updateList = res;
 	}
 	
-	public static ArrayList<SpawnPoint> setSpawnPointList(){
+	public static void setSpawnPointList(){
 		ArrayList<SpawnPoint> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof SpawnPoint){
 				res.add((SpawnPoint)o);
 			}
 		}
-		return res;
+		spawnPointList = res;
 	}
 	
-	public static ArrayList<PickUpItem> setPickUpItemList(){
+	public static void setPickUpItemList(){
 		ArrayList<PickUpItem> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof PickUpItem){
 				res.add((PickUpItem)o);
 			}
 		}
-		return res;
+		pickUpItemList = res;
 	}
 	
-	public static ArrayList<Flag> setFlagList(){
+	public static void setFlagList(){
 		ArrayList<Flag> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Flag){
 				res.add((Flag)o);
 			}
 		}
-		return res;
+		flagList = res;
 	}
-	public static ArrayList<Spawner> setSpawnerList(){
+	public static void setSpawnerList(){
 		ArrayList<Spawner> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Spawner){
 				res.add((Spawner)o);
 			}
 		}
-		return res;
+		spawnerList = res;
 	}
-	public static ArrayList<NeedsSync> setSyncList(){
+	public static void setSyncList(){
 		ArrayList<NeedsSync> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof NeedsSync){
 				res.add((NeedsSync)o);
 			}
 		}
-		return res;
+		syncList = res;
 	}
-	public static ArrayList<NonPlayerCharacter> setNPCList(){
+	public static void setNPCList(){
 		ArrayList<NonPlayerCharacter> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof NonPlayerCharacter){
 				res.add((NonPlayerCharacter)o);
 			}
 		}
-		return res;
+		npcList = res;
 	}
-	public static ArrayList<Tower> setTowerList(){
+	public static void setTowerList(){
 		ArrayList<Tower> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Tower){
 				res.add((Tower)o);
 			}
 		}
-		return res;
+		towerList = res;
 	}
-	public static ArrayList<Resetable> setResetableList(){
+	public static void setResetableList(){
 		ArrayList<Resetable> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Resetable){
 				res.add((Resetable)o);
 			}
 		}
-		return res;
+		resetableList = res;
 	}
 	
 	public static void updateList(){
@@ -622,6 +637,7 @@ public class Main{
 	
 	public static void addCompList(GameObject o){
 		compList.add(o);
+		refreshLists = true;
 	}
 
 	public static void deleteUnusedObjects(){
@@ -632,6 +648,7 @@ public class Main{
 					it.remove();
 				}
 			}
+			refreshLists = true;
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -1439,6 +1456,7 @@ public class Main{
 			for(int i = 1; i+1 < s.length; i+=2){
 				syncPlayerID(s[i], s[i+1]);
 			}
+			
 		}
 		catch(Exception e){
 			System.err.println("Unable to sync IDs");

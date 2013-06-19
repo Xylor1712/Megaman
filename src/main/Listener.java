@@ -72,11 +72,11 @@ public class Listener implements KeyListener, MouseListener{
 				testSaveInFile();
 				break;
 			case KeyEvent.VK_F2:
-				testLoad();
+				//testLoad();
 				break;
 			case KeyEvent.VK_O:
 				SimpleRangedMinion m = new SimpleRangedMinion(0,0,new Point(Main.mapSize.width/2, Main.mapSize.height/2));
-				Main.compList.add(m);
+				Main.addCompList(m);
 				System.out.println("Added: " + m.transformToString());
 				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/spawn " + m.id + " " + m.transformToString());
 				break;
@@ -339,7 +339,7 @@ public class Listener implements KeyListener, MouseListener{
 			ex.printStackTrace();
 		}
 	}
-	
+	/*
 	public void testLoad(){
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
@@ -358,5 +358,5 @@ public class Listener implements KeyListener, MouseListener{
 			ex.printStackTrace();
 		}
 	}
-	
+	*/
 }

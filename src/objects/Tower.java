@@ -157,7 +157,7 @@ public class Tower extends StaticObject implements Damageable, NeedsUpdate, ICol
 		double ySpeed = yDif*factor;
 		
 		
-		Main.compList.add(new TowerMissile(center.x, this.y, xSpeed, ySpeed,
+		Main.addCompList(new TowerMissile(center.x, this.y, xSpeed, ySpeed,
 			this, pc, getDamage()));
 	}
 
