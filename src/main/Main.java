@@ -353,8 +353,108 @@ public class Main{
 	}
 	
 	
+	private static ArrayList<ICollision> collisionList;
+	private static ArrayList<Moveable> moveableList;
+	private static ArrayList<PlayerCharacter> playerList;
+	private static ArrayList<Character> characterList;
+	private static ArrayList<Rect> rectList;
+	private static ArrayList<Missile> missileList;
+	private static ArrayList<StaticObject> staticList;
+	private static ArrayList<NeedsUpdate> updateList;
+	private static ArrayList<SpawnPoint> spawnPointList;
+	private static ArrayList<PickUpItem> pickUpItemList;
+	private static ArrayList<Flag> flagList;
+	private static ArrayList<Spawner> spawnerList;
+	private static ArrayList<NeedsSync> syncList;
+	private static ArrayList<NonPlayerCharacter> npcList;
+	private static ArrayList<Tower> towerList;
+	private static ArrayList<Resetable> resetableList;
 	
-	public static ArrayList<ICollision> getCollisionList(){
+	
+	public static ArrayList<ICollision> getCollisionList() {
+		return collisionList;
+	}
+
+	public static ArrayList<Moveable> getMoveableList() {
+		return moveableList;
+	}
+
+	public static ArrayList<PlayerCharacter> getPlayerList() {
+		return playerList;
+	}
+
+	public static ArrayList<Character> getCharacterList() {
+		return characterList;
+	}
+
+	public static ArrayList<Rect> getRectList() {
+		return rectList;
+	}
+
+	public static ArrayList<Missile> getMissileList() {
+		return missileList;
+	}
+
+	public static ArrayList<StaticObject> getStaticList() {
+		return staticList;
+	}
+
+	public static ArrayList<NeedsUpdate> getUpdateList() {
+		return updateList;
+	}
+
+	public static ArrayList<SpawnPoint> getSpawnPointList() {
+		return spawnPointList;
+	}
+
+	public static ArrayList<PickUpItem> getPickUpItemList() {
+		return pickUpItemList;
+	}
+
+	public static ArrayList<Flag> getFlagList() {
+		return flagList;
+	}
+
+	public static ArrayList<Spawner> getSpawnerList() {
+		return spawnerList;
+	}
+
+	public static ArrayList<NeedsSync> getSyncList() {
+		return syncList;
+	}
+
+	public static ArrayList<NonPlayerCharacter> getNPCList() {
+		return npcList;
+	}
+
+	public static ArrayList<Tower> getTowerList() {
+		return towerList;
+	}
+
+	public static ArrayList<Resetable> getResetableList() {
+		return resetableList;
+	}
+	
+	public static void refreshLists(){
+		setCollisionList();
+		setMoveableList();
+		setPlayerList();
+		setCharacterList();
+		setRectList();
+		setMissileList();
+		setStaticList();
+		setUpdateList();
+		setSpawnPointList();
+		setPickUpItemList();
+		setFlagList();
+		setSpawnerList();
+		setSyncList();
+		setNPCList();
+		setTowerList();
+		setResetableList();
+	}
+	
+	public static ArrayList<ICollision> setCollisionList(){
 		ArrayList<ICollision> res = new ArrayList<ICollision>();
 		for(GameObject o : getCompList()){
 			if(o instanceof ICollision){
@@ -363,7 +463,8 @@ public class Main{
 		}
 		return res;
 	}
-	public static ArrayList<Moveable> getMoveableList(){
+	
+	public static ArrayList<Moveable> setMoveableList(){
 		ArrayList<Moveable> res = new ArrayList<Moveable>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Moveable){
@@ -374,18 +475,12 @@ public class Main{
 
 	}
 	
-//	public static ArrayList<GameObject> getCompList(){
-//		@SuppressWarnings("unchecked")
-//		ArrayList<GameObject> res =(ArrayList<GameObject>) compList.clone();
-//		return res;
-//	}
-	
 	public static ArrayList<GameObject> getCompList(){
 		return new ArrayList<GameObject>(compList);
 	}
 
 	
-	public static ArrayList<PlayerCharacter> getPlayerList(){
+	public static ArrayList<PlayerCharacter> setPlayerList(){
 		ArrayList<PlayerCharacter> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof PlayerCharacter)
@@ -394,7 +489,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<Character> getCharacterList(){
+	public static ArrayList<Character> setCharacterList(){
 		ArrayList<Character> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Character)
@@ -403,7 +498,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<Rect> getRectList(){
+	public static ArrayList<Rect> setRectList(){
 		ArrayList<Rect> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Rect){
@@ -413,7 +508,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<StaticObject> getStaticList(){
+	public static ArrayList<StaticObject> setStaticList(){
 		ArrayList<StaticObject> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof StaticObject){
@@ -423,7 +518,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<Missile> getMissileList(){
+	public static ArrayList<Missile> setMissileList(){
 		ArrayList<Missile> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Missile){
@@ -433,7 +528,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<NeedsUpdate> getUpdateList(){
+	public static ArrayList<NeedsUpdate> setUpdateList(){
 		ArrayList<NeedsUpdate> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof NeedsUpdate){
@@ -443,7 +538,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<SpawnPoint> getSpawnPointList(){
+	public static ArrayList<SpawnPoint> setSpawnPointList(){
 		ArrayList<SpawnPoint> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof SpawnPoint){
@@ -453,7 +548,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<PickUpItem> getPickUpItemList(){
+	public static ArrayList<PickUpItem> setPickUpItemList(){
 		ArrayList<PickUpItem> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof PickUpItem){
@@ -463,7 +558,7 @@ public class Main{
 		return res;
 	}
 	
-	public static ArrayList<Flag> getFlagList(){
+	public static ArrayList<Flag> setFlagList(){
 		ArrayList<Flag> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Flag){
@@ -472,7 +567,7 @@ public class Main{
 		}
 		return res;
 	}
-	public static ArrayList<Spawner> getSpawnerList(){
+	public static ArrayList<Spawner> setSpawnerList(){
 		ArrayList<Spawner> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Spawner){
@@ -481,7 +576,7 @@ public class Main{
 		}
 		return res;
 	}
-	public static ArrayList<NeedsSync> getSyncList(){
+	public static ArrayList<NeedsSync> setSyncList(){
 		ArrayList<NeedsSync> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof NeedsSync){
@@ -490,7 +585,7 @@ public class Main{
 		}
 		return res;
 	}
-	public static ArrayList<NonPlayerCharacter> getNPCList(){
+	public static ArrayList<NonPlayerCharacter> setNPCList(){
 		ArrayList<NonPlayerCharacter> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof NonPlayerCharacter){
@@ -499,7 +594,7 @@ public class Main{
 		}
 		return res;
 	}
-	public static ArrayList<Tower> getTowerList(){
+	public static ArrayList<Tower> setTowerList(){
 		ArrayList<Tower> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Tower){
@@ -508,7 +603,7 @@ public class Main{
 		}
 		return res;
 	}
-	public static ArrayList<Resetable> getResetableList(){
+	public static ArrayList<Resetable> setResetableList(){
 		ArrayList<Resetable> res = new ArrayList<>();
 		for(GameObject o : getCompList()){
 			if(o instanceof Resetable){
