@@ -263,9 +263,11 @@ public abstract class Character extends GameObject implements ICollision, Moveab
 				break;
 			case "SimpleMeleeMinion":
 				res = new SimpleMeleeMinion();
+				if(s.length == 4) res.applyString(trans);
 				break;
 			case "SimpleRangedMinion":
 				res = new SimpleRangedMinion();
+				if(s.length == 4) res.applyString(trans);
 				break;
 			}
 			if(s.length == 5) res.applyString(trans);

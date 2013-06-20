@@ -43,7 +43,7 @@ public class Main{
 	public static IOMap iomap = new IOMap();
 	private static ArrayList<GameObject> compList = new ArrayList<GameObject>();
 	public static PlayerCharacter player2;
-	public static PlayerCharacter player1;
+	private static PlayerCharacter player1;
 	
 
 	public static boolean displayFps = true;
@@ -638,6 +638,7 @@ public class Main{
 	public static void addCompList(GameObject o){
 		compList.add(o);
 		refreshLists = true;
+		refreshLists();
 	}
 
 	public static void deleteUnusedObjects(){
@@ -677,6 +678,10 @@ public class Main{
 		}
 		
 		compList = newCompList;
+		
+		refreshLists = true;
+		refreshLists();
+		
 		if(mode == NORMAL_MODE){
 			clock.restart();
 			movementAllowed = true;
@@ -698,11 +703,14 @@ public class Main{
 		}
 		initStatics(newCompList);
 		compList = newCompList;
+		
+		refreshLists = true;
+		refreshLists();
+		
 		GameRules.currentGameTime = 0;
 		GameRules.rearrange();
 		canvas.repaint();
 		switchMode();
-		
 		
 		movementAllowed = true;
 		gameRuns = true;
@@ -721,6 +729,10 @@ public class Main{
 		}
 		initStatics(newCompList);
 		compList = newCompList;
+		
+		refreshLists = true;
+		refreshLists();
+		
 		GameRules.currentGameTime = 0;
 		GameRules.rearrange();
 		canvas.repaint();
@@ -743,6 +755,10 @@ public class Main{
 		}
 		initStatics(newCompList);
 		compList = newCompList;
+
+		refreshLists = true;
+		refreshLists();
+		
 		GameRules.currentGameTime = 0;
 		canvas.repaint();
 

@@ -32,7 +32,7 @@ public class Canvas extends JPanel{
 	
 	private BufferedImage img;
 	
-	private PlayerCharacter player = Main.player1;
+	private PlayerCharacter player = Main.getCurrentPlayer();
 	
 	private static BufferedImage backgroundImage;
 //	private static TexturePaint backgroundPaint;

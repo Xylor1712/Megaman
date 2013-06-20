@@ -106,22 +106,22 @@ public class Listener implements KeyListener, MouseListener{
 				break;
 			case KeyEvent.VK_D:
 					if(Main.mode == Main.CLIENT_MODE) Main.client.send("/turnRight");
-					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " turnRight");
-						Main.player1.turnRight();
+					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " turnRight");
+						Main.getCurrentPlayer().turnRight();
 						//Main.debug = !Main.debug;
 						break;
 			case KeyEvent.VK_A:
 					if(Main.mode== Main.CLIENT_MODE) Main.client.send("/turnLeft");
-					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " turnLeft");
-					Main.player1.turnLeft();
+					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " turnLeft");
+					Main.getCurrentPlayer().turnLeft();
 					break;
 			case KeyEvent.VK_F:
 					Main.printStatus();
 					break;
 			case KeyEvent.VK_SPACE:
 					if(Main.mode == Main.CLIENT_MODE) Main.client.send("/jump");
-					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " jump");
-					Main.player1.jump();
+					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " jump");
+					Main.getCurrentPlayer().jump();
 					break;
 			case KeyEvent.VK_RIGHT: 
 					if(Main.mode != Main.NORMAL_MODE)return; 
@@ -141,19 +141,19 @@ public class Listener implements KeyListener, MouseListener{
 					break;
 			case KeyEvent.VK_LESS:
 					if(Main.mode == Main.CLIENT_MODE) Main.client.send("/attack");
-					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " attack");
-					Main.player1.attack();
+					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " attack");
+					Main.getCurrentPlayer().attack();
 					break;
 					
 			case KeyEvent.VK_S:
 					if(Main.mode == Main.CLIENT_MODE) Main.client.send("/down");
-					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " down");
-					Main.player1.down();
+					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " down");
+					Main.getCurrentPlayer().down();
 					break;
 			case KeyEvent.VK_W:
 					if(Main.mode == Main.CLIENT_MODE) Main.client.send("/up");
-					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " up");
-					Main.player1.up();
+					if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " up");
+					Main.getCurrentPlayer().up();
 					break;
 			case KeyEvent.VK_NUMPAD0:
 					if(Main.mode != Main.NORMAL_MODE)return; 
@@ -213,13 +213,13 @@ public class Listener implements KeyListener, MouseListener{
 				break;
 			case 65:
 				if(Main.mode == Main.CLIENT_MODE) Main.client.send("/stopTurnLeft");
-				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " stopTurnLeft");
-				Main.player1.stopTurnLeft();
+				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " stopTurnLeft");
+				Main.getCurrentPlayer().stopTurnLeft();
 				break;
 			case 68:
 				if(Main.mode == Main.CLIENT_MODE) Main.client.send("/stopTurnRight");
-				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " stopTurnRight");
-				Main.player1.stopTurnRight();
+				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " stopTurnRight");
+				Main.getCurrentPlayer().stopTurnRight();
 				break;
 			case 38:
 				if(Main.mode != Main.NORMAL_MODE)return; 
@@ -231,13 +231,13 @@ public class Listener implements KeyListener, MouseListener{
 				break;
 			case 83:
 				if(Main.mode == Main.CLIENT_MODE) Main.client.send("/stopDown");
-				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " stopDown");
-				Main.player1.stopDown();
+				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " stopDown");
+				Main.getCurrentPlayer().stopDown();
 				break;
 			case 87:
 				if(Main.mode == Main.CLIENT_MODE) Main.client.send("/stopUp");
-				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.player1.getName() + " stopUp");
-				Main.player1.stopUp();
+				if(Main.mode == Main.SERVER_MODE) Main.server.sendToAll("/action " + Main.getCurrentPlayer().getName() + " stopUp");
+				Main.getCurrentPlayer().stopUp();
 				break;
 			case 122:
 				Main.menubar.fullscreenMode();
@@ -270,9 +270,9 @@ public class Listener implements KeyListener, MouseListener{
 			}
 			return;
 		}
-		if((e.getButton() == MouseEvent.BUTTON1 || e.getButton() == MouseEvent.BUTTON3) && (Main.mode == Main.SERVER_MODE || Main.mode == Main.CLIENT_MODE)){
+		if((e.getButton() == MouseEvent.BUTTON1 || e.getButton() == MouseEvent.BUTTON3) && (Main.mode == Main.SERVER_MODE || Main.mode == Main.CLIENT_MODE) && Main.gameRuns){
 			keyPressed = Util.frameToMapPoint(e.getPoint());
-			PlayerCharacter pc = Main.getPlayer(Main.name);
+			PlayerCharacter pc = Main.getCurrentPlayer();
 			double xDif = keyPressed.x-pc.getxPos()-pc.getWidth()/2;
 			double yDif = keyPressed.y-pc.getyPos()-pc.getHeight()/2;
 			double distance = Math.sqrt(xDif*xDif + yDif*yDif);
@@ -284,7 +284,7 @@ public class Listener implements KeyListener, MouseListener{
 			
 //			if(Main.debug) System.out.println("shoot "+xSpd+ " " + ySpd);
 			if(Main.mode == Main.SERVER_MODE){
-				Main.player1.attack(xSpd, ySpd, attackMove);
+				Main.getCurrentPlayer().attack(xSpd, ySpd, attackMove);
 				Main.server.sendToAll("/attack " + Main.name + " " + xSpd + " " + ySpd + " " + attackMove);
 			}
 			if(Main.mode == Main.CLIENT_MODE) Main.client.send("/attack2 " + xSpd + " " + ySpd + " " + attackMove);
